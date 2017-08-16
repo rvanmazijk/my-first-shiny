@@ -14,12 +14,12 @@ shinyUI(fluidPage(
 
     # Formula input to draw
     sidebarLayout(
-        sidebarPanel(textInput(
-            inputId = "formula",
-            label = "Function formula:",
-            value = c("y", "x")
-        )),
-        # Show a plot of the generated distribution
+        sidebarPanel(
+            textInput(inputId = "formula_y", label = "Function formula Y:"),
+            textInput(inputId = "formula_x", label = "Function formula X:"),
+            submitButton(text = "Submit")
+        ),
+        # Draw!
         mainPanel(plotOutput("drawPlot"))
     )
 

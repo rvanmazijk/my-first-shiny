@@ -9,6 +9,6 @@ library(shiny)
 
 shinyServer(function(input, output) {
     output$drawPlot <- renderPlot({
-        draw(fun_y = input$formula[1], fun_x = input$formula[2])
+        draw(fun_y = input$formula_y, fun_x = input$formula_x)
     })
 })
