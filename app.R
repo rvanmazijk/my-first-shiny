@@ -33,7 +33,7 @@ draw <- function(fun_y = "y",
 }
 
 ui <- shinyUI(fluidPage(
-    titlePanel("Graph functions using rasters 📈😃"),
+    titlePanel("Graph functions using rasters 📈😃") - Ruan van Mazijk,
     # Formula input to draw
     sidebarLayout(
         sidebarPanel(
@@ -54,4 +54,4 @@ server <- shinyServer(function(input, output) {
 shinyApp(ui = ui, server = server)
 
 # TODO: add functionality to display more/less of the Cartesian plain,
-#       i.e. beyond the [|1|, |1|] square
+#       i.e. beyond the [|1|,|1|] square
