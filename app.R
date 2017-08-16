@@ -33,7 +33,7 @@ draw <- function(fun_y = "y",
 }
 
 ui <- shinyUI(fluidPage(
-    titlePanel("Graph functions using rasters 📈😃") - Ruan van Mazijk,
+    titlePanel("Graph functions using rasters 📈😃"),
     # Formula input to draw
     sidebarLayout(
         sidebarPanel(
