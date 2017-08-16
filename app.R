@@ -12,7 +12,6 @@ draw <- function(fun_y = "y",
                  x = seq(-1, 1, by = 0.02),
                  y = seq(-1, 1, by = 0.02)) {
 
-
     fun_child <- function(x, y) {}
     body(fun_child) <- parse(text = glue(
         "({y} < {x} + {lwt}) && ({y} > {x} - {lwt})",
@@ -34,12 +33,12 @@ draw <- function(fun_y = "y",
 }
 
 ui <- shinyUI(fluidPage(
-    titlePanel("Draw functions using rasters!"),
+    titlePanel("Graph functions using rasters 📈😃"),
     # Formula input to draw
     sidebarLayout(
         sidebarPanel(
-            textInput(inputId = "formula_y", label = "RHS:", value = "y"),
-            textInput(inputId = "formula_x", label = "LHS:", value = "x")
+            textInput(inputId = "formula_y", label = "LHS:", value = "y"),
+            textInput(inputId = "formula_x", label = "RHS:", value = "x")
         ),
         # Draw!
         mainPanel(plotOutput("drawPlot"))
