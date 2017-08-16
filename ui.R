@@ -15,9 +15,8 @@ shinyUI(fluidPage(
     # Formula input to draw
     sidebarLayout(
         sidebarPanel(
-            textInput(inputId = "formula_y", label = "Function formula Y:"),
-            textInput(inputId = "formula_x", label = "Function formula X:"),
-            submitButton(text = "Submit")
+            textInput(inputId = "formula_y", label = "RHS:", value = "y"),
+            textInput(inputId = "formula_x", label = "LHS:", value = "x")
         ),
         # Draw!
         mainPanel(plotOutput("drawPlot"))
