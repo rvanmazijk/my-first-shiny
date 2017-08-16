@@ -52,3 +52,6 @@ server <- shinyServer(function(input, output) {
 })
 
 shinyApp(ui = ui, server = server)
+
+# TODO: add functionality to display more/less of the Cartesian plain,
+#       i.e. beyond the [|1|, |1|] square
