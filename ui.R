@@ -10,19 +10,17 @@ library(shiny)
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Draw functions using rasters!"),
 
-    # Sidebar with a slider input for number of bins
+    # Formula input to draw
     sidebarLayout(
-        sidebarPanel(sliderInput(
-            "bins",
-            "Number of bins:",
-            min = 1,
-            max = 60,
-            value = 30
+        sidebarPanel(textInput(
+            inputId = "formula",
+            label = "Function formula:",
+            value = c("y", "x")
         )),
         # Show a plot of the generated distribution
-        mainPanel(plotOutput("distPlot"))
+        mainPanel(plotOutput("drawPlot"))
     )
 
 ))
