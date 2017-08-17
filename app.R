@@ -25,10 +25,8 @@ draw <- function(fun_y = "y",
         }
     }
 
-    op <- par()
     par(mar = c(0.2, 0.2, 0.2, 0))
     plot(raster(t(z)), legend = FALSE, xaxt = "n", yaxt = "n")
-    par(op)
 
 }
 
@@ -36,15 +34,26 @@ ui <- shinyUI(fluidPage(
     titlePanel("Graph functions using rasters"),
     sidebarLayout(
         sidebarPanel(
-
             # Formula input to draw
             textInput(inputId = "formula_y", label = "LHS:", value = "y"),
             textInput(inputId = "formula_x", label = "RHS:", value = "x"),
-
             # X & Y plotting ranges
-            sliderInput(inputId = "range_y", label = "y-range",
-                        min = -10, max = 10,
-                        value = c(-1, 1), dragRange = TRUE)
+            sliderInput(
+                inputId = "range_y",
+                label = "y-range",
+                min = -10,
+                max = 10,
+                value = c(-1, 1),
+                dragRange = TRUE
+            ),
+            sliderInput(
+                inputId = "range_x",
+                label = "x-range",
+                min = -10,
+                max = 10,
+                value = c(-1, 1),
+                dragRange = TRUE
+            )
         ),
         # Draw!
         mainPanel(plotOutput("drawPlot"))
@@ -53,11 +62,19 @@ ui <- shinyUI(fluidPage(
 
 server <- shinyServer(function(input, output) {
     output$drawPlot <- renderPlot({
-        draw(fun_y = input$formula_y, fun_x = input$formula_x)
+        draw(
+            fun_y = input$formula_y,
+            fun_x = input$formula_x,
+            x = seq(
+                input$range_x[1], input$range_x[2],
+                by = (input$range_x[2] - input$range_x[1]) / 100
+            ),
+            y = seq(
+                input$range_y[1], input$range_y[2],
+                by = (input$range_y[2] - input$range_y[1]) / 100
+            )
+        )
     })
 })
 
 shinyApp(ui = ui, server = server)
-
-# TODO: add functionality to display more/less of the Cartesian plain,
-#       i.e. beyond the [|1|,|1|] square
