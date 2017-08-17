@@ -9,7 +9,7 @@ p_load(raster, tidyverse, glue, stringr, shiny)
 draw <- function(fun_y = "y",
                  fun_x = "x",
                  lwt = 0.05,
-                 x = seq(-1, 1, by = 0.02),
+                 x = seq(-1, 1, by = 0.02),  # i.e. in 100ths
                  y = seq(-1, 1, by = 0.02)) {
 
     fun_child <- function(x, y) {}
@@ -33,12 +33,18 @@ draw <- function(fun_y = "y",
 }
 
 ui <- shinyUI(fluidPage(
-    titlePanel("Graph functions using rasters 📈😃"),
-    # Formula input to draw
+    titlePanel("Graph functions using rasters"),
     sidebarLayout(
         sidebarPanel(
+
+            # Formula input to draw
             textInput(inputId = "formula_y", label = "LHS:", value = "y"),
-            textInput(inputId = "formula_x", label = "RHS:", value = "x")
+            textInput(inputId = "formula_x", label = "RHS:", value = "x"),
+
+            # X & Y plotting ranges
+            sliderInput(inputId = "range_y", label = "y-range",
+                        min = -10, max = 10,
+                        value = c(-1, 1), dragRange = TRUE)
         ),
         # Draw!
         mainPanel(plotOutput("drawPlot"))
